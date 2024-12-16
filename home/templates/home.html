@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intranet - Página Inicial</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'geral/css/login.css' %}">
+    <style>
+        /* Estilo global para o body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            background-image: url("{% static 'geral/img/background.jpeg' %}"); /* Caminho para a imagem */
+            background-size: cover; /* Faz com que a imagem cubra toda a tela */
+            background-position: center center; /* Centraliza a imagem */
+            min-height: 100vh; /* Garante que o body ocupe 100% da altura da tela */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Cabeçalho com Degradê */
+        header {
+            background: linear-gradient(135deg, #253746 0%, #007bff 100%); /* Degradê de azul */
+            padding: 20px;
+            color: white;
+            text-align: center;
+            z-index: 1; /* Garante que o cabeçalho fique acima da imagem de fundo */
+            position: relative; /* Necessário para que o z-index funcione */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left img {
+            width: 150px;
+            height: auto;
+        }
+
+        .header-right a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            padding: 10px 15px;
+            background-color: #253746; /* Azul especificado */
+            border-radius: 5px;
+        }
+
+        .header-right a:hover {
+            background-color: #1d2b34; /* Tom um pouco mais escuro */
+        }
+
+        /* Container principal para as flexboxes */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 30px;
+            padding: 20px;
+            margin-top: 40px;
+            flex: 1; /* Faz com que o conteúdo principal ocupe o espaço restante */
+        }
+
+        /* Estilo para o box de status dos servidores */
+        .status-box, .content-box, .consultar-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            width: 300px;
+            height: 300px;
+            border: 2px solid #253746; /* Azul especificado */
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2; /* Garante que as flexbox fiquem acima da imagem de fundo */
+        }
+
+        .status-indicator {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Cor para "ON" e "OFF" */
+        .status-on {
+            background-color: green;
+        }
+
+        .status-off {
+            background-color: red;
+        }
+
+        /* Estilo para os botões */
+        .btn-reiniciar, .btn-consultar {
+            background: #253746; /* Azul especificado */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        .btn-reiniciar:hover, .btn-consultar:hover {
+            background-color: #1d2b34; /* Tom um pouco mais escuro */
+        }
+
+        /* Cor do botão "Sair" */
+        .btn-sair {
+            background-color: red;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-sair:hover {
+            background-color: #b30000;
+        }
+
+        /* Rodapé com maior margem */
+        footer {
+            background-color: rgba(37, 55, 70, 0.3); /* Cor de fundo mais transparente */
+            padding: 40px 20px;
+            color: #aaa; /* Texto em cinza claro */
+            text-align: center;
+            margin-top: 50px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            z-index: 2;
+            border: none; /* Remove qualquer borda que tenha sido aplicada */
+        }
+        
+        footer .container p {
+            margin: 0; /* Remove margens extras ao redor do texto */
+            color: #aaa; /* Texto em cinza claro */
+        }
+        
+        
+        
+        
+        
+
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <div class="header-left">
+                <img class="logo" src="{% static 'geral/img/logo2.png' %}" alt="Logo">
+            </div>
+            <div class="header-center">
+                <h1 id="welcome-message"></h1> <!-- Mensagem de boas-vindas dinâmica -->
+            </div>
+            <div class="header-right">
+                <a href="/sair" class="btn-sair">Sair</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main>
+        <div class="main-container">
+            <!-- Caixa de Status dos Servidores (à esquerda) -->
+            <div class="status-box">
+                <h3>Status dos Servidores</h3>
+                <div class="status-indicator {% if server1_status == 'ON' %}status-on{% else %}status-off{% endif %}">
+                    Servidor 1: {{ server1_status }}
+                </div>
+                <div class="status-indicator {% if server2_status == 'ON' %}status-on{% else %}status-off{% endif %}">
+                    Servidor 2: {{ server2_status }}
+                </div>
+            </div>
+
+            <!-- Caixa de Reinício dos Servidores (ao centro) -->
+            <div class="content-box">
+                <h2>Você está logado no sistema.</h2>
+                <p>Escolha uma das opções abaixo para reiniciar os servidores:</p>
+
+                <!-- Formulários para reiniciar os servidores -->
+                <form method="POST" action="{% url 'reiniciar_servidor' %}" style="margin: 10px;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-reiniciar">Reiniciar Servidor 1</button>
+                </form>
+
+                <form method="POST" action="{% url 'reiniciar_servidor' %}" style="margin: 10px;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-reiniciar">Reiniciar Servidor 2</button>
+                </form>
+            </div>
+
+            <!-- Caixa de Consultar POPs (à direita) -->
+            <div class="consultar-box">
+                <h3>Consultar POPs</h3>
+                <a href="{% url 'consultar_pops' %}" class="btn-consultar">Consultar</a>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Alcatraz Intranet. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Função para escrever o texto letra por letra
+        function typeWriter(text, elementId, delay) {
+            let index = 0;
+            const element = document.getElementById(elementId);
+            function type() {
+                if (index < text.length) {
+                    element.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(type, delay);
+                }
+            }
+            type();
+        }
+
+        // Chamar a função com o nome do usuário
+        const username = "{{ user.username }}"; // Obter o nome do usuário diretamente do Django
+        const welcomeText = `Bem-vindo, ${username}!`;
+        typeWriter(welcomeText, 'welcome-message', 100); // 100ms de delay entre as letras
+    </script>
+
+</body>
+</html>

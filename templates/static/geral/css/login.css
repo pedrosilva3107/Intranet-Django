@@ -1,0 +1,136 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #e0eafc, #cfdef3);
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: #007bff;
+    color: white;
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 50px; /* Ajuste a altura do logo conforme necessário */
+}
+
+.header-center {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.btn-consultar-pops, .btn-sair {
+    background: #28a745;
+    color: white;
+    padding: 12px 20px; /* Aumentando o tamanho do botão */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 15px; /* Espaço entre os botões */
+    transition: background 0.3s;
+}
+
+.btn-consultar-pops:hover {
+    background: #218838;
+}
+
+.btn-sair {
+    background: #dc3545;
+}
+
+.btn-sair:hover {
+    background: #c82333;
+}
+
+.content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 
+    
+    .btn-reiniciar {
+        background: #007bff; /* Cor de fundo do botão */
+        color: white; /* Cor do texto */
+        padding: 12px 20px; /* Tamanho do botão */
+        border: none; /* Remove a borda padrão */
+        border-radius: 5px; /* Arredonda os cantos do botão */
+        cursor: pointer; /* Muda o cursor ao passar o mouse */
+        transition: background 0.3s; /* Transição suave para a cor de fundo */
+        margin: 10px; /* Margem entre os botões */
+        font-size: 16px; /* Tamanho da fonte */
+    }
+    
+    .btn-reiniciar:hover {
+        background: #0056b3; /* Cor de fundo ao passar o mouse */
+    }
+    <style>
+        /* Adiciona uma imagem de fundo à página */
+        body {
+            background-image: url('{% static "geral/images/fundo.jpg" %}');  /* Caminho para sua imagem */
+            background-size: cover;  /* Faz a imagem cobrir toda a tela */
+            background-position: center;  /* Centraliza a imagem */
+            background-attachment: fixed;  /* Faz a imagem não se mover enquanto a página rola */
+            background-repeat: no-repeat;  /* Evita que a imagem se repita */
+            margin: 0;
+            padding: 0;
+        }
+    
+        /* Estilo para o conteúdo principal */
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;  /* Altura mínima para centralizar o conteúdo */
+            text-align: center;  /* Centraliza o texto */
+            background-color: rgba(248, 249, 250, 0.9);  /* Fundo levemente translúcido */
+            padding: 20px;
+        }
+    
+        /* Estilo para o container que vai envolver o conteúdo em um quadrado */
+        .content-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            width: 300px;
+            height: 300px;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    
